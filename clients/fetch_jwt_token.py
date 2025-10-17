@@ -12,8 +12,20 @@ def fetch_token(_username: str, _password: str):
         'username': _username,
         'password': _password,
     })
-    logger.debug({'fetch jwt token status': requests.status_codes})
+    # logger.debug({'fetch jwt token status': requests.status_codes})
     return response.json().get('access')
+
+
+def fetch_profile(_token: str):
+    _url = 'http://127.0.0.1:8000/api/myself'
+    response = requests.get(_url, headers={'Authorization': f'JWT {token}'})
+    return response.text
+
+
+def fetch_tasks(_token: str):
+    _url = 'http://127.0.0.1:8000/api/task'
+    response = requests.get(_url, headers={'Authorization': f'JWT {token}'})
+    return response.text
 
 
 if __name__ == '__main__':
@@ -22,5 +34,9 @@ if __name__ == '__main__':
 
     token = fetch_token(username, password)
     print({'Authorization JWT': token})
+    print('profile')
+    print(fetch_profile(token))
+    print('tasks')
+    print(fetch_tasks(token))
 
 
