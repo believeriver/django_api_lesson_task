@@ -23,8 +23,10 @@ export const fetchAsyncLogin = createAsyncThunk(
           '[ERROR]: fetchAsyncLogin: Server response:',
           err.response.data
         );
+        alert(`サーバーエラーが発生しました: ${JSON.stringify(err.response.data)}`);
       }
       console.log('[ERROR]:fetchAsyncLogin:', err.message);
+      alert(`エラーが発生しました: ${err.message}`);
     }
   }
 );
@@ -45,8 +47,10 @@ export const fetchAsyncRegister = createAsyncThunk(
           '[ERROR]: fetchAsyncRegister: Server response:',
           err.response.data
         );
+        alert(`サーバーエラーが発生しました: ${JSON.stringify(err.response.data)}`);
       }
       console.log('[ERROR]: fetchAsyncRegister: ', err.message);
+      alert(`エラーが発生しました: ${err.message}`);
     }
   }
 );
@@ -65,8 +69,10 @@ export const fetchAsyncProf = createAsyncThunk('login/get', async () => {
         '[ERROR]: fetchAsyncProf: Server response:',
         err.response.data
       );
+      alert(`サーバーエラーが発生しました: ${JSON.stringify(err.response.data)}`);
     }
     console.log('[ERROR]: fetchAsyncProf: ', err.message);
+    alert(`エラーが発生しました: ${err.message}`);
   }
 });
 
