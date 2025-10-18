@@ -7,34 +7,67 @@ const apiUrl = 'http://127.0.0.1:8000/';
 const token = localStorage.localJWT;
 
 //API: login
-export const fetchAsyncLogin = createAsyncThunk('login/post', async (auth: AuthProps) => {
-  const res = await axios.post(`${apiUrl}authen/jwt/create`, auth, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-  return res.data;
-});
+export const fetchAsyncLogin = createAsyncThunk(
+  'login/post',
+  async (auth: AuthProps) => {
+    try {
+      const res = await axios.post(`${apiUrl}authen/jwt/create`, auth, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return res.data;
+    } catch (err: any) {
+      if (err.response && err.response.data) {
+        console.log(
+          '[ERROR]: fetchAsyncLogin: Server response:',
+          err.response.data
+        );
+      }
+      console.log('[ERROR]:fetchAsyncLogin:', err.message);
+    }
+  }
+);
 
 export const fetchAsyncRegister = createAsyncThunk(
   'login/register',
   async (auth: AuthProps) => {
-    const res = await axios.post(`${apiUrl}api/register/`, auth, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    return res.data;
+    try {
+      const res = await axios.post(`${apiUrl}api/register/`, auth, {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      return res.data;
+    } catch (err: any) {
+      if (err.response && err.response.data) {
+        console.log(
+          '[ERROR]: fetchAsyncRegister: Server response:',
+          err.response.data
+        );
+      }
+      console.log('[ERROR]: fetchAsyncRegister: ', err.message);
+    }
   }
 );
 
 export const fetchAsyncProf = createAsyncThunk('login/get', async () => {
-  const res = await axios.get(`${apiUrl}api/myself`, {
-    headers: {
-      Authorization: `JWT ${token}`,
-    },
-  });
-  return res.data;
+  try {
+    const res = await axios.get(`${apiUrl}api/myself`, {
+      headers: {
+        Authorization: `JWT ${token}`,
+      },
+    });
+    return res.data;
+  } catch (err: any) {
+    if (err.response && err.response.data) {
+      console.log(
+        '[ERROR]: fetchAsyncProf: Server response:',
+        err.response.data
+      );
+    }
+    console.log('[ERROR]: fetchAsyncProf: ', err.message);
+  }
 });
 
 // Slice: called by dispatch.
