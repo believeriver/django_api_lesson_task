@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import type { RootState } from '../../app/store';
+import { type AppDispatch, type RootState } from '../../app/store';
 import styles from './Login.module.css';
 
 import {
@@ -18,22 +18,22 @@ const Login = () => {
   const state = useSelector((state: RootState) => state);
   console.log('[INFO]:Full Redux State:', JSON.stringify(state, null, 2));
 
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const authen = useSelector(selectAuthen);
   const isLoginView = useSelector(selectIsLoginView);
   const btnDisabler = authen.username === '' || authen.password === '';
 
-  // // login function
-  // const login = async () => {
-  //   if (isLoginView) {
-  //     await dispatch(fetchAsyncLogin(authen));
-  //   } else {
-  //     const result = await dispatch(fetchAsyncRegister(authen))
-  //     if (fetchAsyncRegister.fulfilled.match(result)){
-  //       await dispatch(fetchAsyncLogin(authen))
-  //     }
-  //   }
-  // }
+  // login function
+  const login = async () => {
+    if (isLoginView) {
+      await dispatch(fetchAsyncLogin(authen));
+    } else {
+      const result = await dispatch(fetchAsyncRegister(authen))
+      if (fetchAsyncRegister.fulfilled.match(result)){
+        await dispatch(fetchAsyncLogin(authen))
+      }
+    }
+  }
 
   return (
     <div>
@@ -51,7 +51,7 @@ const Login = () => {
           />
           <span>Password</span>
           <input
-            type="text"
+            type="password"
             className={styles.inputLog}
             name="password"
             placeholder=""
@@ -63,7 +63,7 @@ const Login = () => {
               variant='contained'
               disabled={btnDisabler}
               color='primary'
-              // onClick={login}
+              onClick={login}
             >
               {isLoginView ? "Login" : "Create"}
             </Button>

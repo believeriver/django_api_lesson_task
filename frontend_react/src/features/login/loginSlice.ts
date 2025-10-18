@@ -1,11 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import type { RootState } from '../../app/store';
+import type { AuthProps, ProfileProps } from '../types';
 
 const apiUrl = 'http://127.0.0.1:8000/';
 const token = localStorage.localJWT;
 
 //API: login
-export const fetchAsyncLogin = createAsyncThunk('login/post', async (auth: any) => {
+export const fetchAsyncLogin = createAsyncThunk('login/post', async (auth: AuthProps) => {
   const res = await axios.post(`${apiUrl}authen/jwt/create`, auth, {
     headers: {
       'Content-Type': 'application/json',
@@ -16,8 +18,8 @@ export const fetchAsyncLogin = createAsyncThunk('login/post', async (auth: any) 
 
 export const fetchAsyncRegister = createAsyncThunk(
   'login/register',
-  async (auth: any) => {
-    const res = await axios.post(`${apiUrl}api/register`, auth, {
+  async (auth: AuthProps) => {
+    const res = await axios.post(`${apiUrl}api/register/`, auth, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -74,8 +76,8 @@ const loginSlice = createSlice({
 //reducer
 export const { editUsername, editPassword, toggleMode } = loginSlice.actions;
 //enable them to connect from react components.
-export const selectAuthen = (state: any) => state.login.authen;
-export const selectIsLoginView = (state: any) => state.login.isLoginView;
-export const selectProfile = (state: any) => state.login.profile;
+export const selectAuthen = (state: RootState) => state.login.authen;
+export const selectIsLoginView = (state: RootState) => state.login.isLoginView;
+export const selectProfile = (state: RootState) => state.login.profile;
 
 export default loginSlice.reducer;
