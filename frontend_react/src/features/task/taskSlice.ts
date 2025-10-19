@@ -62,7 +62,7 @@ export const fetchAsyncUpdate = createAsyncThunk(
   }
 );
 
-//API: deletetask.
+//API: delete task.
 export const fetchAsyncDelete = createAsyncThunk(
   'task/delete',
   async (id: number) => {
