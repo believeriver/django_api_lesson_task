@@ -1,4 +1,3 @@
-
 // loginSlice
 export interface AuthProps {
   username: string;
@@ -8,4 +7,12 @@ export interface AuthProps {
 export interface ProfileProps {
   id: number;
   username: string;
+}
+
+//taskSlice
+export interface TaskProps {
+  id: number;
+  title: string;
+  created_at: string;
+  updated_at: string;
 }

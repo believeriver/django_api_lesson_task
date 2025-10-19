@@ -15,8 +15,10 @@ import {
 import { Button } from '@mui/material';
 
 const Login = () => {
-  const state = useSelector((state: RootState) => state);
-  console.log('[INFO]:Full Redux State:', JSON.stringify(state, null, 2));
+  // check state data.--------------------------------------
+  // const state = useSelector((state: RootState) => state);
+  // console.log('[INFO]:Full Redux State:', JSON.stringify(state, null, 2));
+  // -------------------------------------------------------
 
   const dispatch = useDispatch<AppDispatch>();
   const authen = useSelector(selectAuthen);
