@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import type { RootState } from '../../app/store';
-import type { AuthProps, ProfileProps } from '../types';
+import type { AuthProps } from '../types';
 
 const apiUrl = 'http://127.0.0.1:8000/';
 const token = localStorage.localJWT;

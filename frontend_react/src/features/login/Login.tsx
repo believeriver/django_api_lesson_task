@@ -1,6 +1,6 @@
-import React from 'react';
+// import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { type AppDispatch, type RootState } from '../../app/store';
+import { type AppDispatch } from '../../app/store';
 import styles from './Login.module.css';
 
 import {

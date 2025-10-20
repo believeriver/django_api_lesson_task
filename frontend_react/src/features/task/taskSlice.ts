@@ -3,7 +3,7 @@ import axios from 'axios';
 import type { RootState } from '../../app/store';
 import type { TaskProps } from '../types';
 
-const apiUrl = 'http://127.0.0.1:8000/';
+const apiUrl = 'http://127.0.0.1:8000/api/tasks/';
 const token = localStorage.localJWT;
 
 //API :fetch task list

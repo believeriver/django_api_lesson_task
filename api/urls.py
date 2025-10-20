@@ -4,7 +4,7 @@ from rest_framework import routers
 from api.views import CreateUserView, MyProfileView, TaskViewSet
 
 router = routers.DefaultRouter()
-router.register('task', TaskViewSet, basename='tasks')
+router.register('tasks', TaskViewSet, basename='tasks')
 
 urlpatterns = [
     path('myself/', MyProfileView.as_view(), name='myself'),

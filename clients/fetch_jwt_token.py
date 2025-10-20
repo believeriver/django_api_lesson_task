@@ -23,7 +23,7 @@ def fetch_profile(_token: str):
 
 
 def fetch_tasks(_token: str):
-    _url = 'http://127.0.0.1:8000/api/task'
+    _url = 'http://127.0.0.1:8000/api/tasks/'
     response = requests.get(_url, headers={'Authorization': f'JWT {token}'})
     return response.text
 
