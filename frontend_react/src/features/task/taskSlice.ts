@@ -47,7 +47,7 @@ export const fetchAsyncUpdate = createAsyncThunk(
   'task/put',
   async (task: TaskProps) => {
     try {
-      const res = await axios.put(`${apiUrl}${task.id}`, task, {
+      const res = await axios.put(`${apiUrl}${task.id}/`, task, {
         headers: {
           'Content-Type': 'application/json',
           Authorization: `JWT ${token}`,

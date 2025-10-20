@@ -40,7 +40,7 @@ const TaskItem = ({ task }: TaskItemProps) => {
 
         <button
           className={styles.taskIcon}
-          onClick={() => dispatch(editTask(task.id))}
+          onClick={() => dispatch(editTask(task))}
         >
           <FaEdit />
         </button>
