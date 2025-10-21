@@ -56,7 +56,7 @@ const TaskInput = () => {
             onClick={createClicked}
             color="primary"
           >
-            Change
+            Create
           </Button>
         ) : (
           <Button
